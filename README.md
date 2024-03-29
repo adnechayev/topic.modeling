@@ -1,33 +1,42 @@
-<h1>JWipe - Disk Sanitization</h1>
-
- ### [YouTube Demonstration](https://youtu.be/7eJexJVCqJo)
+<h1>Topic Modeling with Artist Lyrics</h1>
 
 <h2>Description</h2>
-Project consists of a simple PowerShell script that walks the user through "zeroing out" (wiping) any drives that are connected to the system. The utility allows you to select the target disk and choose the number of passes that are performed. The PowerShell script will configure a diskpart script file based on the user's selections and then launch Diskpart to perform the disk sanitization.
+This project utilizes BERTopic, a topic modeling technique leveraging transformer embedding models, UMAP dimensionality reduction, HDBSCAN clustering, and c-TF-IDF cluster tagging. We take
+a look at pop artist Khalid's lyrics in order to create sensible topic clusters, which we then run through an OpenAI API call to assign descriptions to the created topics.
 <br />
 
 
-<h2>Languages and Utilities Used</h2>
+<h2>Languages Used</h2>
 
-- <b>PowerShell</b> 
-- <b>Diskpart</b>
+- <b>Python</b> 
 
 <h2>Environments Used </h2>
 
-- <b>Windows 10</b> (21H2)
+- <b>Google Colab</b>
 
-<h2>Program walk-through:</h2>
+<h2>Project walk-through:</h2>
 
 <p align="center">
-Launch the utility: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+First, we perform some preliminary data exploration, such as looking at the breakdown of songs per album, total song count, missing values, and a distribution plot showcasing the average character count across the songs: <br/>
+<img src="https://i.imgur.com/iWjQ8oj.png" height="50%" width="50%" alt="albums"/> <img src="https://i.imgur.com/DXQ7La6.png" height="50%" width="50%" alt="number of songs"/> <img src="https://i.imgur.com/Eudsuwz.png" height="50%" width="50%" alt="dist plot"/>
+<br />
+Looking at the song counts, it looks like we have some albums containing only 1 song. It's safe to say we can consider these as singles.
+<br /> 
+<br />
+Looking into the 'NaN' values, we can determine that these songs are also either singles or remixes.
+<img src="https://i.imgur.com/NvVFAkT.png" height="65%" width="65%" alt="albums"/>
 <br />
 <br />
-Select the disk:  <br/>
-<img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+We can remedy this by creating two functions to group all singles and remixes into a single album labeled "Singles":
+<img src="https://i.imgur.com/hbQQXpE.png" height="50%" width="45%" alt="albums"/><img src="https://i.imgur.com/KvYhI4g.png" height="50%" width="50%" alt="albums"/>
 <br />
 <br />
-Enter the number of passes: <br/>
+We also explore the word frequencies across all the songs using a bar chart and WordCloud. This will give us a better idea of the overarching theme to expect from Khalid's songs:  <br/>
+<img src="https://i.imgur.com/QX19huj.png" height="50%" width="50%" alt="bar_chart"/><img src="https://i.imgur.com/x3Eg7ZU.png" height="50%" width="50%" alt="word cloud"/>
+We can infer the theme from the most common lyrics to revolve around the experience of love and the associated emotions and challenges. It touches on the idea of knowing someone or something deeply, the innocence and passion of youth, the intensity of feelings, the passage of time, moments of foolishness or naivety, and the significance of night as a setting for introspection or romantic encounters. 
+<br />
+<br />
+Now for the fun part - building our model!  <br/>
 <img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
