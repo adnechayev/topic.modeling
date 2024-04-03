@@ -49,20 +49,25 @@ In order for the BERTopic model to work with our list of lyrics, we need to tran
 <img src="https://i.imgur.com/EAw2iOS.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-For topic extraction, we work with a technique called c-TF-IDF, a modified version of TF-IDF, for BERTopic modeling. While the traditional TF-IDF technique looks at the most relevent documents given a term, c-TF-IDF looks at the most relevent terms within a document instead. We add the parameter BM-25, a class based weighting measure that works better with smaller datasets.
-<br/>
-<br/>
-<img src="https://i.imgur.com/xioKfde.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
 Our vector embedding model yields a dense multi-dimensional vector space. For the purpose of topic clustering and extraction, we want to reduce the dimensionality of our vector representations. We do this via UMAP (Uniform Manifold Approximation and Production), which transforms our vectors into 2 or 3 dimensions. UMAP excels at this task because we can control how well local or global structures are preserved via the 'n-neighbors' parameter. Increasing the parameter creates larger clusters, however since we are dealing with a smaller dataset, we opt to set the value 'n-neighbors' to 2. We also use the default distance computing metric 'cosine' since our data has been vectorized in high dimensions.
 <br/>
 <br/>
 <img src="https://i.imgur.com/WBJbK6O.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Observe the wiped disk:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Now that we have our low-dimension vectors, we want to cluster them to eventually extract meaningful topics. To this end, we emply HDBSCAN - an hierarchical density-based clustering technique. The hierarchical aspect entails that the clustering will look for a logical "sequence" when considering different points together. This is something can later visualize to see how our BERTopic model determined the hierarchy. HDBSCAN being density-based means that it can cluster points together based on their density (how close they are to each other). This also means it can handle irregular shapes and outliers. Our parameters include the minimum cluster size, which we set to 5 due to the fact that any higher and we hardly get any topics generated, and any lower yields too many. All other parameters are set to default.   
+<br/>
+<br/>
+<img src="https://i.imgur.com/yei8Mh6.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<br/>
+<br/>
+For topic extraction, we work with a technique called c-TF-IDF, a modified version of TF-IDF, for BERTopic modeling. While the traditional TF-IDF technique looks at the most relevent documents given a term, c-TF-IDF looks at the most relevent terms within a document instead. We add the parameter BM-25, a class based weighting measure that works better with smaller datasets.
+<br/>
+<br/>
+<img src="https://i.imgur.com/xioKfde.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+
 </p>
 <!--
  ```diff
