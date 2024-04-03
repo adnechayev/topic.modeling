@@ -124,7 +124,7 @@ We have all these terms grouped into topics, but how can we interpret them? Is t
 To finalize this project, I was curious to see a more detailed description a given topic, so I ran an OpenAI API call on a selected topic to see what ChatGPT could come up with, and compare it with the representation model:
 <br/>
 <br/>
-<img src="https://i.imgur.com/KkbUQQJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/KkbUQQJ.png" height="120%" width="120%" alt="Disk Sanitization Steps"/>
 </p>
 <!--
  ```diff
