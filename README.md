@@ -55,10 +55,10 @@ Our vector embedding model yields a dense multi-dimensional vector space. For th
 <img src="https://i.imgur.com/WBJbK6O.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Now that we have our low-dimension vectors, we want to cluster them to eventually extract meaningful topics. To this end, we emply HDBSCAN - an hierarchical density-based clustering technique. The hierarchical aspect entails that the clustering will look for a logical "sequence" when considering different points together. This is something can later visualize to see how our BERTopic model determined the hierarchy. HDBSCAN being density-based means that it can cluster points together based on their density (how close they are to each other). This also means it can handle irregular shapes and outliers. Our parameters include the minimum cluster size, which we set to 5 due to the fact that any higher and we hardly get any topics generated, and any lower yields too many. All other parameters are set to default.   
+Now that we have our low-dimension vectors, we want to cluster them to eventually extract meaningful topics. To this end, we emply HDBSCAN - an hierarchical density-based clustering technique. The hierarchical aspect entails that the clustering will look for a logical "sequence" when considering different points together. This is something can later visualize to see how our BERTopic model determined the hierarchy. HDBSCAN being density-based means that it can cluster points together based on their density (how close they are to each other). This also means it can handle irregular shapes and outliers. Our parameters include the minimum cluster size, which we set to 2 due to the fact that any higher and we hardly get any topics generated, and any lower yields too many, possibly diluting any significant meaning per topic. All other parameters are set to default.   
 <br/>
 <br/>
-<img src="https://i.imgur.com/yei8Mh6.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/sacf4ZK.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <br/>
 <br/>
 For topic extraction, we work with a technique called c-TF-IDF, a modified version of TF-IDF, for BERTopic modeling. While the traditional TF-IDF technique looks at the most relevent documents given a term, c-TF-IDF looks at the most relevent terms within a document instead. We add the parameter BM-25, a class based weighting measure that works better with smaller datasets.
@@ -67,7 +67,32 @@ For topic extraction, we work with a technique called c-TF-IDF, a modified versi
 <img src="https://i.imgur.com/xioKfde.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-
+With all our parameters set, we can now run the model! Upon completion, we can look at the various topics generated (keep in mind that row '-1' is denoted to outliers):
+<br/>
+<br/>
+<img src="https://i.imgur.com/BY7dJmy.png" height="65%" width="65%" alt="Disk Sanitization Steps"/>
+<br/>
+<br/>
+We're also able to take a look at several visualizations where we can glean more information about the topics and how they might relate to each other. This series of barcharts shows the relevency score of term per topic:
+<br/>
+<br/>
+<img src="https://i.imgur.com/lSvkOyB.png" height="70%" width="70%" alt="Disk Sanitization Steps"/>
+<br/>
+<br/>
+We can take a look at a heatmap highlighting the similarity between the different topics:
+<br/>
+<br/>
+<img src="https://i.imgur.com/eQBUOf1.png" height="75%" width="75%" alt="Disk Sanitization Steps"/>
+<br/>
+It's interesting to note here that most topics, excluding 4 and 7, have a high similarity score with each other. When we call on OpenAI API to generate descriptions for the topics, we can expect to see this similarity to present itself in analogous descriptions.
+<br/>
+<br/>
+However before we do that, it's worthwhile to see how our BERTopic model determined hierarchy when producing topics:
+<br/>
+<br/>
+<img src="https://i.imgur.com/pcXuEDf.png" height="70%" width="70%" alt="Disk Sanitization Steps"/>
+<br/>
+Reading it from right to left, we can see the storyline of how our model took certain 
 </p>
 <!--
  ```diff
