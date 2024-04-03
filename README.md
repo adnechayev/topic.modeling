@@ -92,7 +92,31 @@ However before we do that, it's worthwhile to see how our BERTopic model determi
 <br/>
 <img src="https://i.imgur.com/pcXuEDf.png" height="70%" width="70%" alt="Disk Sanitization Steps"/>
 <br/>
-Reading it from right to left, we can see the storyline of how our model took certain 
+Reading it from right to left, we can see the storyline of how our model took certain terms and divided them into different branches, eventually leading to the creation of different topics. By taking a look at the first two nodes, we can see the most dominant terms:
+<br/>
+<br/>
+<img src="https://i.imgur.com/iLtGu1k.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<br/>
+Node 1
+<br/>
+<br/>
+<img src="https://i.imgur.com/EZVasuK.png" height="50%" width="50%" alt="Disk Sanitization Steps"/>
+<br/>
+Node 2
+<br/>
+<br/>
+<br/>
+<br/>
+We have all these terms grouped into topics, but how can we interpret them? Is there some theme we can glean from each topic? By calling on OpenAI API via a representation model, we can create an apt topic description for each of our generated topics. Representation models are alternative methods for fine-tuning topic representations. Rather than the default list of words we get via BERTopic's Bag-of-Words representation, we can call on different models to potentially produce different results for comparison. While most other models also give us a list of words, the OpenAI representation uses one of its LLM models (gpt-3-turbo in our case) to create an appropriate description for all the topics:
+<br/>
+<br/>
+<img src="https://i.imgur.com/qxrxCqu.png" height="30%" width="30%" alt="Disk Sanitization Steps"/>
+<br/>
+<br/>
+To finalize this project, I was curious to see a more detailed description a given topic, so I ran an OpenAI API call on a selected topic to see what ChatGPT could come up with, and compare it with the representation model:
+<br/>
+<br/>
+<img src="https://i.imgur.com/KkbUQQJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <!--
  ```diff
