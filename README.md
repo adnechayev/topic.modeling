@@ -17,21 +17,29 @@ a look at pop artist Khalid's lyrics in order to create sensible topic clusters,
 <h2>Project walk-through:</h2>
 
 <p align="center">
-First, we perform some preliminary data exploration, such as looking at the breakdown of songs per album, total song count, missing values, and a distribution plot showcasing the average character count across the songs: <br/>
+First, we perform some preliminary data exploration, such as looking at the breakdown of songs per album, total song count, missing values, and a distribution plot showcasing the average character count across the songs: 
+<br/>
+<br/>
 <img src="https://i.imgur.com/iWjQ8oj.png" height="50%" width="50%" alt="albums"/> <img src="https://i.imgur.com/DXQ7La6.png" height="50%" width="50%" alt="number of songs"/> <img src="https://i.imgur.com/Eudsuwz.png" height="50%" width="50%" alt="dist plot"/>
 <br />
 Looking at the song counts, it looks like we have some albums containing only 1 song. It's safe to say we can consider these as singles.
 <br /> 
 <br />
 Looking into the 'NaN' values, we can determine that these songs are also either singles or remixes.
+<br/>
+<br/>
 <img src="https://i.imgur.com/NvVFAkT.png" height="65%" width="65%" alt="albums"/>
 <br />
 <br />
 We can remedy this by creating two functions to group all singles and remixes into a single album labeled "Singles":
+<br/>
+<br/>
 <img src="https://i.imgur.com/hbQQXpE.png" height="45%" width="45%" alt="albums"/><img src="https://i.imgur.com/KvYhI4g.png" height="50%" width="50%" alt="albums"/>
 <br />
 <br />
-We also explore the word frequencies across all the songs using a bar chart and WordCloud. This will give us a better idea of the overarching theme to expect from Khalid's songs:  <br/>
+We also explore the word frequencies across all the songs using a bar chart and WordCloud. This will give us a better idea of the overarching theme to expect from Khalid's songs:
+<br/>
+<br/>
 <img src="https://i.imgur.com/QX19huj.png" height="50%" width="50%" alt="bar_chart"/><img src="https://i.imgur.com/x3Eg7ZU.png" height="50%" width="50%" alt="word cloud"/>
 We can infer the theme from the most common lyrics to revolve around the experience of love and the associated emotions and challenges. It touches on the idea of knowing someone or something deeply, the innocence and passion of youth, the intensity of feelings, the passage of time, moments of foolishness or naivety, and the significance of night as a setting for introspection or romantic encounters. 
 <br />
